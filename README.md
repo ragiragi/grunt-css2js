@@ -23,17 +23,17 @@ will be converted to
 
 Install this grunt plugin next to your project's [grunt.js gruntfile][getting_started] with: `npm install grunt-css2js`
 
-Then add this line to your project's `grunt.js` gruntfile:
+Then add this line to your project's `Gruntfile.js` gruntfile:
 
     grunt.loadNpmTasks('grunt-css2js');
 
 
-[grunt]: https://github.com/cowboy/grunt
-[getting_started]: https://github.com/cowboy/grunt/blob/master/docs/getting_started.md
+[grunt]: https://github.com/gruntjs/grunt
+[getting_started]: http://gruntjs.com/getting-started
 
 ## Documentation
 
-in grunt.js:
+in Gruntfile.js:
 
     grunt.initConfig({
         ...
@@ -42,9 +42,9 @@ in grunt.js:
                 src: 'src/foo.css',
                 dest: 'dist/foo.css.js'
             },
-            module_b: {
-                src: ...,
-                dest: ...
+            bar: {
+                src: [ 'src/bar/a.css', 'src/bar/b.css' ],
+                dest: 'dist/bar.css.js'
             }
         }
         ...
@@ -52,6 +52,9 @@ in grunt.js:
 
 ## Release History
 
+### 0.2.0
+
+Support for grunt ~0.4.1
 
 ### 0.1.1
 

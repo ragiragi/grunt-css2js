@@ -13,12 +13,25 @@ module.exports = function (grunt) {
 
     grunt.registerMultiTask('css2js', 'Convert a CSS File to JS DOM Script.', function () {
 
-        var src = grunt.file.expandFiles(this.data.src),
-            dest = this.data.dest,
-            css = grunt.file.read(src),
-            cssInJavascriptString = convertInJSString(css);
+      // Iterate of the Files Array
+      this.files.forEach(function(file) {
 
-        grunt.file.write(dest, '(function () {' +
+        var contents = file.src.filter(function(filepath) {
+          // Remove nonexistent files (it's up to you to filter or warn here).
+          if (!grunt.file.exists(filepath)) {
+            grunt.log.warn('Source file "' + filepath + '" not found.');
+            return false;
+          } else {
+            return true;
+          }
+        }).map(function(filepath) {
+          // Read and return the file's source.
+          return grunt.file.read(filepath);
+        }).join('\n');
+
+        var cssInJavascriptString = convertInJSString(contents);
+
+        grunt.file.write(file.dest, '(function () {' +
             '    var cssText = ' + cssInJavascriptString + ',' +
             '        styleEl = document.createElement("style");' +
             '    document.getElementsByTagName("head")[0].appendChild(styleEl);' +
@@ -34,8 +47,12 @@ module.exports = function (grunt) {
             '        }' +
             '    }' +
             '}());');
-        grunt.log.writeln('File "' + dest + '" created.');
-        return true;
+
+        grunt.log.writeln('File "' + file.dest + '" created.');
+
+      });
+
+      return true;
     });
 
     function convertInJSString(css) {

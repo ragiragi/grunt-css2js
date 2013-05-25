@@ -29,9 +29,9 @@ var grunt = require('grunt');
             done();
         },
         'helper': function (test) {
-//            test.expect(1);
-//            // tests here
-//            test.equal(grunt.helper('css2js'), 'css2!!!', 'should return the correct value.');
+            test.expect(0);
+            // tests here
+            //test.equal(grunt.helper('css2js'), 'css2!!!', 'should return the correct value.');
             test.done();
         }
     };
