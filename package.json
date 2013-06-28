@@ -1,7 +1,7 @@
 {
   "name": "grunt-css2js",
   "description": "convert a css file to DOM script format(inline stylesheet)",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "homepage": "https://github.com/ragiragi/grunt-css2js",
   "author": {
     "name": "Choi Seong-Rak",
